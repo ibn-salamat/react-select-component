@@ -1,2 +1,2 @@
 # react-select-component
-react
+demo: https://ibn-salamat.github.io/projects/react-select-component/index.html
