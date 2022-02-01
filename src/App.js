@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useReducer } from "react";
 import { Select } from "./select";
 
 const initial_languages = [
@@ -40,23 +40,64 @@ const initial_languages = [
 ];
 
 function App() {
+  const [state, setState] = useReducer((prevState, newState) => {
+    return {
+      ...prevState, ...newState
+    }
+  }, {
+    select1: null,
+    select2: null,
+    select3: null
+  })
   return (
-    <>
+    <div style={{display: 'flex', flexDirection: "column", alignItems: 'center'}}>
+      <br />
+      <br />
+
+      Select1: 
+      <br />
+      <br />
+
+      <code>{JSON.stringify(state.select1)}</code>
+
+      <br />
+
+      Select2: 
+      <br />
+      <br />
+
+      <code>{JSON.stringify(state.select2)}</code>
+
+      <br />
+
+      Select3: 
+      <br />
+      <br />
+
+      <code>{JSON.stringify(state.select3)}</code>
+      <br />
       <Select
         options={initial_languages}
-        handleSelectChange={(value) => console.log(value)}
+        handleSelectChange={(value) => 
+          setState({select1: value})
+        }
       />
 
       <Select
         options={initial_languages}
-        handleSelectChange={(value) => console.log(value)}
+        handleSelectChange={(value) => {
+          setState({select2: value})
+        }}
       />
 
       <Select
         options={initial_languages}
-        handleSelectChange={(value) => console.log(value)}
+        handleSelectChange={(value) => {
+          setState({select3: value})
+
+        }}
       />
-    </>
+    </div>
   );
 }
 
